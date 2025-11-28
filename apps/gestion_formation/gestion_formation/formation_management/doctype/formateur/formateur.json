@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "FORMATEUR.####",
+ "creation": "2025-11-24 15:29:44.549752",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "nom_complet",
+  "email",
+  "telephone",
+  "specialite",
+  "actif"
+ ],
+ "fields": [
+  {
+   "fieldname": "nom_complet",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom Complet",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "T\u00e9l\u00e9phone"
+  },
+  {
+   "fieldname": "specialite",
+   "fieldtype": "Select",
+   "label": "Sp\u00e9cialit\u00e9",
+   "options": "Informatique\nComptabilit\u00e9\nGestion\nAutre"
+  },
+  {
+   "default": "1",
+   "fieldname": "actif",
+   "fieldtype": "Check",
+   "label": "Actif"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-24 16:45:17.001571",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Formateur",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

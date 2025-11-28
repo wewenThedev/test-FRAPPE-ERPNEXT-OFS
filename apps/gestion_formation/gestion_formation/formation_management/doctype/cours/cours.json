@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "COURS.######",
+ "creation": "2025-11-24 15:34:11.042952",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "titre",
+  "description",
+  "formateur",
+  "duree_heures",
+  "prix",
+  "actif"
+ ],
+ "fields": [
+  {
+   "fieldname": "titre",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Titre",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "formateur",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Formateur",
+   "options": "Formateur",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duree_heures",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Dur\u00e9e en heures",
+   "reqd": 1
+  },
+  {
+   "fieldname": "prix",
+   "fieldtype": "Currency",
+   "label": "Prix"
+  },
+  {
+   "default": "0",
+   "fieldname": "actif",
+   "fieldtype": "Check",
+   "label": "Actif"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-24 16:01:12.819637",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Cours",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

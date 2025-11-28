@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:FORMATION-{cours}-{date_debut}-{####}",
+ "creation": "2025-11-24 17:23:18.004719",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "cours",
+  "lieu",
+  "column_break_8ojvs",
+  "date_debut",
+  "date_fin",
+  "section_break_ipx1s",
+  "participants"
+ ],
+ "fields": [
+  {
+   "fieldname": "cours",
+   "fieldtype": "Link",
+   "label": "Cours",
+   "options": "Cours",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Date de d\u00e9but",
+   "reqd": 1
+  },
+  {
+   "description": "Vous devez choisir une date de fin ult\u00e9rieure \u00e0 la date de d\u00e9but que vous avez choisi pour le d\u00e9roulement de la session de formation.",
+   "fieldname": "date_fin",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Date de fin",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lieu",
+   "fieldtype": "Data",
+   "label": "Lieu"
+  },
+  {
+   "fieldname": "participants",
+   "fieldtype": "Table",
+   "label": "Participants",
+   "options": "Participant"
+  },
+  {
+   "fieldname": "column_break_8ojvs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ipx1s",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-27 19:34:43.083931",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Session de Formation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

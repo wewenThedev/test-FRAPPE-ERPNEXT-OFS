@@ -1,0 +1,31 @@
+# .gitignore pour Frappe/ERPNext
+.env
+*.pyc
+__pycache__/
+*.egg-info/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Database
+config/database.*
+*.db
+*.sqlite3
+
+# Bench specific
+sites/common_site_config.json
+sites/.env
+sites/currentsite.txt
+sites/assets/
+
+# Node modules
+node_modules/
+
+# Backups
+backups/
+
+# Temporary files
+tmp/

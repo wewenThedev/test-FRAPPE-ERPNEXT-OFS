@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include gestion_formation *.css
+recursive-include gestion_formation *.csv
+recursive-include gestion_formation *.html
+recursive-include gestion_formation *.ico
+recursive-include gestion_formation *.js
+recursive-include gestion_formation *.json
+recursive-include gestion_formation *.md
+recursive-include gestion_formation *.png
+recursive-include gestion_formation *.py
+recursive-include gestion_formation *.svg
+recursive-include gestion_formation *.txt
+recursive-exclude gestion_formation *.pyc

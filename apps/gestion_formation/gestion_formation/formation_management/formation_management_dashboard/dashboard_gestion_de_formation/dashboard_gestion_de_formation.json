@@ -1,0 +1,29 @@
+{
+ "cards": [],
+ "charts": [
+  {
+   "chart": "Sessions par mois",
+   "width": "Half"
+  },
+  {
+   "chart": "Nombre total de participants",
+   "width": "Half"
+  },
+  {
+   "chart": "Revenu par cours",
+   "width": "Half"
+  }
+ ],
+ "creation": "2025-11-24 19:18:45.409569",
+ "dashboard_name": "Dashboard Gestion de Formation",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2025-11-28 11:23:55.323825",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Dashboard Gestion de Formation",
+ "owner": "Administrator"
+}

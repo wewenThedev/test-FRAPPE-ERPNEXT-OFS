@@ -1,0 +1,68 @@
+{
+ "add_total_row": 1,
+ "columns": [
+  {
+   "fieldname": "name",
+   "fieldtype": "Data",
+   "label": "Session",
+   "width": 0
+  },
+  {
+   "fieldname": "cours",
+   "fieldtype": "Data",
+   "label": "Cours",
+   "width": 0
+  },
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "label": "Date de d\u00e9but",
+   "width": 0
+  },
+  {
+   "fieldname": "date_fin",
+   "fieldtype": "Date",
+   "label": "Date de fin",
+   "width": 0
+  }
+ ],
+ "creation": "2025-11-28 09:47:17.398353",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "label": "Date de d\u00e9but",
+   "mandatory": 0,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "date_fin",
+   "fieldtype": "Date",
+   "label": "Date de fin",
+   "mandatory": 0,
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Ent\u00eate DEV OFS",
+ "modified": "2025-11-28 12:17:53.414863",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Query report session",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT \r\n    s.name as \"Session\",\r\n    s.cours as \"Cours\",\r\n    s.date_debut as \"Date de d\u00e9but\",\r\n    s.date_fin as \"Date de fin\",\r\n    COUNT(p.name) as \"Nombre de participants\"\r\nFROM `tabSession de Formation` s\r\nLEFT JOIN `tabParticipant` p ON p.parent = s.name AND p.parentfield = 'participants'\r\nWHERE \r\n    1=1\r\n    AND s.date_debut >= '2025-11-05'\r\n    AND s.date_fin <= '2025-11-18'\r\nGROUP BY s.name, s.cours, s.date_debut, s.date_fin\r\nORDER BY s.date_debut DESC",
+ "ref_doctype": "Session de Formation",
+ "report_name": "Query report session",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}
