@@ -1,0 +1,237 @@
+<!-- Fichier: gestion_formation/templates/pages/formation_overview.html -->
+
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container mt-4">
+    <!-- En-tête avec titre et message d'introduction -->
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="page-title">{{ title }}</h1>
+            <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i>
+                {{ intro_message }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Statistiques -->
+    <div class="row mb-5">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.total_sessions or 0 }}</h4>
+                    <p class="card-text">Sessions Planifiées</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.total_cours or 0 }}</h4>
+                    <p class="card-text">Cours Différents</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.total_formateurs or 0 }}</h4>
+                    <p class="card-text">Formateurs Actifs</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h4 class="card-title">{{ stats.total_participants or 0 }}</h4>
+                    <p class="card-text">Participants Totaux</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Sessions à Venir -->
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="card-title mb-0">Sessions à Venir</h3>
+                    <button class="btn btn-primary btn-sm" onclick="rafraichirSessions()">
+                        <i class="fa fa-refresh"></i> Actualiser
+                    </button>
+                </div>
+                <div class="card-body">
+                    {% if sessions_a_venir %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Session</th>
+                                    <th>Cours</th>
+                                    <th>Formateur</th>
+                                    <th>Date Début</th>
+                                    <th>Date Fin</th>
+                                    <th>Participants</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for session in sessions_a_venir %}
+                                <tr>
+                                    <td>
+                                        <strong>{{ session.name }}</strong>
+                                        {% if session.lieu %}
+                                        <br><small class="text-muted">{{ session.lieu }}</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ session.cours }}</td>
+                                    <td>{{ session.formateur }}</td>
+                                    <td>{{ frappe.format(session.date_debut, {'fieldtype': 'Date'}) }}</td>
+                                    <td>{{ frappe.format(session.date_fin, {'fieldtype': 'Date'}) }}</td>
+                                    <td>
+                                        <span class="badge badge-pill badge-{{ 'success' if session.nombre_participants > 0 else 'secondary' }}">
+                                            {{ session.nombre_participants }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" 
+                                                onclick="afficherDetails('{{ session.name }}')">
+                                            <i class="fa fa-eye"></i> Détails
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fa fa-calendar-times-o fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">Aucune session à venir</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+// Fonction pour afficher les détails d'une session
+function afficherDetails(sessionName) {
+    frappe.call({
+        method: 'frappe.client.get',
+        args: {
+            doctype: 'Session de Formation',
+            name: sessionName
+        },
+        callback: function(r) {
+            if (r.message) {
+                const session = r.message;
+                
+                // Créer le contenu du modal
+                const content = `
+                    <div>
+                        <h4>Détails de la Session</h4>
+                        <p><strong>Cours:</strong> ${session.cours}</p>
+                        <p><strong>Formateur:</strong> ${session.formateur}</p>
+                        <p><strong>Dates:</strong> Du ${session.date_debut} au ${session.date_fin}</p>
+                        <p><strong>Lieu:</strong> ${session.lieu || 'Non spécifié'}</p>
+                        <p><strong>Participants:</strong> ${session.participants ? session.participants.length : 0}</p>
+                    </div>
+                `;
+                
+                // Afficher le modal
+                frappe.msgprint({
+                    title: `Session: ${session.name}`,
+                    message: content,
+                    indicator: 'blue'
+                });
+            }
+        }
+    });
+}
+
+// Fonction pour rafraîchir la liste des sessions
+function rafraichirSessions() {
+    frappe.call({
+        method: 'gestion_formation.pages.formation_overview.get_sessions_a_venir',
+        callback: function(r) {
+            if (r.message) {
+                frappe.show_alert({
+                    message: 'Liste actualisée avec succès',
+                    indicator: 'green'
+                });
+                // En production, vous mettriez à jour le tableau ici
+            }
+        }
+    });
+}
+
+// Fonction pour utiliser set_intro (alternative au message d'alerte)
+function afficherIntroduction() {
+    frappe.set_intro(`
+        <h4>Bienvenue dans la vue d'ensemble des formations</h4>
+        <p>Cette page vous permet de :</p>
+        <ul>
+            <li>Voir les sessions à venir</li>
+            <li>Consulter les statistiques globales</li>
+            <li>Accéder rapidement aux détails des sessions</li>
+        </ul>
+    `);
+}
+
+// Appeler l'introduction au chargement de la page
+frappe.ready(function() {
+    afficherIntroduction();
+});
+</script>
+{% endblock %}
+
+{% block style %}
+<style>
+.page-title {
+    color: #2e86ab;
+    border-bottom: 2px solid #2e86ab;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: none;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.table th {
+    background-color: #2e86ab;
+    color: white;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #2e86ab;
+    border-color: #2e86ab;
+}
+
+.btn-primary:hover {
+    background-color: #1a5a7a;
+    border-color: #1a5a7a;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-secondary {
+    background-color: #6c757d;
+}
+</style>
+{% endblock %}

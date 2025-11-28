@@ -194,4 +194,14 @@ fixtures = ["Custom Field", "Role", "DocType", "Print Format",
     "Report", "Page", "Web Form"
 ]
 
+# Includes in HTMl head
+# ------------------
 
+# include js, css files in header of desk.html
+# app_include_css = "/assets/gestion_formation/css/formation_overview.css"
+# app_include_js = "/assets/gestion_formation/js/formation_overview.js"
+
+# Routes pour la page
+website_route_rules = [
+    {"from_route": "/formation-overview", "to_route": "formation-overview"},
+]
