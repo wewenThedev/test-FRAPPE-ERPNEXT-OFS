@@ -1,8 +1,7 @@
-<!-- Fichier: gestion_formation/templates/pages/formation_overview.html -->
 
-{% extends "templates/web.html" %}
+{% comment %} {% extends "templates/web.html" %}
 
-{% block page_content %}
+{% block page_content %} {% endcomment %}
 <div class="container mt-4">
     <!-- En-tête avec titre et message d'introduction -->
     <div class="row mb-4">
@@ -137,7 +136,6 @@ function afficherDetails(sessionName) {
                     <div>
                         <h4>Détails de la Session</h4>
                         <p><strong>Cours:</strong> ${session.cours}</p>
-                        <p><strong>Formateur:</strong> ${session.formateur}</p>
                         <p><strong>Dates:</strong> Du ${session.date_debut} au ${session.date_fin}</p>
                         <p><strong>Lieu:</strong> ${session.lieu || 'Non spécifié'}</p>
                         <p><strong>Participants:</strong> ${session.participants ? session.participants.length : 0}</p>
@@ -158,14 +156,14 @@ function afficherDetails(sessionName) {
 // Fonction pour rafraîchir la liste des sessions
 function rafraichirSessions() {
     frappe.call({
-        method: 'gestion_formation.pages.formation_overview.get_sessions_a_venir',
+        method: 'gestion_formation.page.formation_overview.formation_overview.get_sessions_a_venir',
+        //method: 'gestion_formation.page.formation_overview.formation_overview.get_sessions_a_venir',
         callback: function(r) {
             if (r.message) {
                 frappe.show_alert({
                     message: 'Liste actualisée avec succès',
                     indicator: 'green'
                 });
-                // En production, vous mettriez à jour le tableau ici
             }
         }
     });
@@ -234,4 +232,4 @@ frappe.ready(function() {
     background-color: #6c757d;
 }
 </style>
-{% endblock %}
+{% comment %} {% endblock %} {% endcomment %}

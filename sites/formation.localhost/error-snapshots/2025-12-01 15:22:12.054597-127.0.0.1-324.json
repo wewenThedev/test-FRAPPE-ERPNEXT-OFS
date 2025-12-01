@@ -1,0 +1,232 @@
+{
+ "etype": "TypeError",
+ "evalue": "TypeError(\"'SessiondeFormation' object is not subscriptable\")",
+ "exception": {
+  "args": [
+   40,
+   34,
+   39,
+   83,
+   101,
+   115,
+   115,
+   105,
+   111,
+   110,
+   100,
+   101,
+   70,
+   111,
+   114,
+   109,
+   97,
+   116,
+   105,
+   111,
+   110,
+   39,
+   32,
+   111,
+   98,
+   106,
+   101,
+   99,
+   116,
+   32,
+   105,
+   115,
+   32,
+   110,
+   111,
+   116,
+   32,
+   115,
+   117,
+   98,
+   115,
+   99,
+   114,
+   105,
+   112,
+   116,
+   97,
+   98,
+   108,
+   101,
+   34,
+   44,
+   41
+  ],
+  "with_traceback": [
+   60,
+   98,
+   117,
+   105,
+   108,
+   116,
+   45,
+   105,
+   110,
+   32,
+   109,
+   101,
+   116,
+   104,
+   111,
+   100,
+   32,
+   119,
+   105,
+   116,
+   104,
+   95,
+   116,
+   114,
+   97,
+   99,
+   101,
+   98,
+   97,
+   99,
+   107,
+   32,
+   111,
+   102,
+   32,
+   84,
+   121,
+   112,
+   101,
+   69,
+   114,
+   114,
+   111,
+   114,
+   32,
+   111,
+   98,
+   106,
+   101,
+   99,
+   116,
+   62
+  ]
+ },
+ "frames": [
+  {
+   "call": "(request=<Request 'http://formation.localhost:8001/api/me...w.formation_overview.get_session_details' [POST]>)",
+   "dump": {
+    "frappe. api": "<module 'frappe.api' from '/home/owen/frappe-bench-ofs/apps/frappe/frappe/api.py'>",
+    "frappe.api. handle": "<function handle>",
+    "global frappe": "<module 'frappe' from '/home/owen/frappe-bench-ofs/apps/frappe/frappe/__init__.py'>",
+    "response": "None"
+   },
+   "file": "/home/owen/frappe-bench-ofs/apps/frappe/frappe/app.py",
+   "func": "application",
+   "lines": {
+    "64": "",
+    "65": "\t\telif request.path.startswith(\"/api/\"):",
+    "66": "\t\t\tresponse = frappe.api.handle()",
+    "67": "",
+    "68": "\t\telif request.path.startswith(\"/backups\"):"
+   },
+   "lnum": 66
+  },
+  {
+   "call": "()",
+   "dump": {
+    "frappe. handler": "<module 'frappe.handler' from '/home/owen/frappe-bench-ofs/apps/frappe/frappe/handler.py'>",
+    "frappe.handler. handle": "<function handle>",
+    "global frappe": "<module 'frappe' from '/home/owen/frappe-bench-ofs/apps/frappe/frappe/__init__.py'>"
+   },
+   "file": "/home/owen/frappe-bench-ofs/apps/frappe/frappe/api.py",
+   "func": "handle",
+   "lines": {
+    "53": "\tif call == \"method\":",
+    "54": "\t\tfrappe.local.form_dict.cmd = doctype",
+    "55": "\t\treturn frappe.handler.handle()",
+    "56": "",
+    "57": "\telif call == \"resource\":"
+   },
+   "lnum": 55
+  },
+  {
+   "call": "()",
+   "dump": {
+    "cmd": "'gestion_formation.formation_management.page.form...n_overview.formation_overview.get_session_details'",
+    "data": "None",
+    "global execute_cmd": "<function execute_cmd>"
+   },
+   "file": "/home/owen/frappe-bench-ofs/apps/frappe/frappe/handler.py",
+   "func": "handle",
+   "lines": {
+    "36": "",
+    "37": "\tif cmd != \"login\":",
+    "38": "\t\tdata = execute_cmd(cmd)",
+    "39": "",
+    "40": "\t# data can be an empty string or list which are valid responses"
+   },
+   "lnum": 38
+  },
+  {
+   "call": "(cmd='gestion_formation.formation_management.page.form...n_overview.formation_overview.get_session_details', from_async=False)",
+   "dump": {
+    "frappe. call": "<function call>",
+    "frappe. form_dict": "{'session_name': 'FORMATION-COURS000002-2025-12-...overview.formation_overview.get_session_details'}",
+    "global frappe": "<module 'frappe' from '/home/owen/frappe-bench-ofs/apps/frappe/frappe/__init__.py'>",
+    "method": "<function get_session_details>"
+   },
+   "file": "/home/owen/frappe-bench-ofs/apps/frappe/frappe/handler.py",
+   "func": "execute_cmd",
+   "lines": {
+    "74": "\t\tis_valid_http_method(method)",
+    "75": "",
+    "76": "\treturn frappe.call(method, **frappe.form_dict)",
+    "77": "",
+    "78": ""
+   },
+   "lnum": 76
+  },
+  {
+   "call": "(fn=<function get_session_details>, *args=(), **kwargs={'cmd': 'gestion_formation.formation_management.page.form...n_overview.formation_overview.get_session_details', 'session_name': 'FORMATION-COURS000002-2025-12-01-0024'})",
+   "dump": {
+    "args": "()",
+    "fn": "<function get_session_details>",
+    "newargs": "{'session_name': 'FORMATION-COURS000002-2025-12-01-0024'}"
+   },
+   "file": "/home/owen/frappe-bench-ofs/apps/frappe/frappe/__init__.py",
+   "func": "call",
+   "lines": {
+    "1472": "\tnewargs = get_newargs(fn, kwargs)",
+    "1473": "",
+    "1474": "\treturn fn(*args, **newargs)",
+    "1475": "",
+    "1476": ""
+   },
+   "lnum": 1474
+  },
+  {
+   "call": "(session_name='FORMATION-COURS000002-2025-12-01-0024')",
+   "dump": {
+    "session": "<SessiondeFormation: FORMATION-COURS000002-2025-12-01-0024>"
+   },
+   "file": "/home/owen/frappe-bench-ofs/apps/gestion_formation/gestion_formation/formation_management/page/formation_overview/formation_overview.py",
+   "func": "get_session_details",
+   "lines": {
+    "69": "",
+    "70": "    # R\u00e9cup\u00e9rer le titre du cours",
+    "71": "    if session['cours']:",
+    "72": "        cours = frappe.get_doc('Cours', session['cours'])",
+    "73": "        session['cours_nom'] = cours.titre"
+   },
+   "lnum": 71
+  }
+ ],
+ "locals": {
+  "session": "<SessiondeFormation: FORMATION-COURS000002-2025-12-01-0024>",
+  "session_name": "FORMATION-COURS000002-2025-12-01-0024"
+ },
+ "pyver": "Python 3.10.12: /home/owen/frappe-bench-ofs/env/bin/python (prefix: /home/owen/frappe-bench-ofs/env)",
+ "timestamp": "2025-12-01 15:22:12.054777",
+ "traceback": "Traceback (most recent call last):\n  File \"/home/owen/frappe-bench-ofs/apps/frappe/frappe/app.py\", line 66, in application\n    response = frappe.api.handle()\n  File \"/home/owen/frappe-bench-ofs/apps/frappe/frappe/api.py\", line 55, in handle\n    return frappe.handler.handle()\n  File \"/home/owen/frappe-bench-ofs/apps/frappe/frappe/handler.py\", line 38, in handle\n    data = execute_cmd(cmd)\n  File \"/home/owen/frappe-bench-ofs/apps/frappe/frappe/handler.py\", line 76, in execute_cmd\n    return frappe.call(method, **frappe.form_dict)\n  File \"/home/owen/frappe-bench-ofs/apps/frappe/frappe/__init__.py\", line 1474, in call\n    return fn(*args, **newargs)\n  File \"/home/owen/frappe-bench-ofs/apps/gestion_formation/gestion_formation/formation_management/page/formation_overview/formation_overview.py\", line 71, in get_session_details\n    if session['cours']:\nTypeError: 'SessiondeFormation' object is not subscriptable\n"
+}

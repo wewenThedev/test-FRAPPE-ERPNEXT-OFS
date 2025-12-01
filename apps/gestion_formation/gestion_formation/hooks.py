@@ -202,6 +202,8 @@ fixtures = ["Custom Field", "Role", "DocType", "Print Format",
 # app_include_js = "/assets/gestion_formation/js/formation_overview.js"
 
 # Routes pour la page
-website_route_rules = [
-    {"from_route": "/formation-overview", "to_route": "formation-overview"},
-]
+# website_route_rules = [
+#     {"from_route": "/formation-overview", "to_route": "formation-overview"},
+# ]
+
+# app_include_js = 'public/js/pages/session_dashboard.js'

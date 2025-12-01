@@ -1,0 +1,31 @@
+.formation-overview {
+    padding: 20px;
+}
+
+.session-row:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.table th {
+    border-top: none;
+}
+
+.badge-pill {
+    font-size: 0.85em;
+    padding: 5px 10px;
+}
+
+.btn-details {
+    min-width: 90px;
+}
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+    padding: 10px 15px;
+}
+
+.list-group-item:first-child {
+    border-top: none;
+}

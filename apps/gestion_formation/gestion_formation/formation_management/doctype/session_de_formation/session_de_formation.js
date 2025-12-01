@@ -89,12 +89,21 @@ frappe.ui.form.on('Session de Formation', {
 		}
 	},
 
+	lieu : function(frm){
+		if(frm.doc.lieu){
+			//let listeSessions = frappe.get_list('Session de Formation', filters={'date_debut' : ['>=', frappe.utils.nowdate()]})
+			let listeSessions = frappe.get_list('Session de Formation',fields=['name', 'cours', 'date_debut', 'date_fin'], debug=True)
+			
+
+			listeSessions.array.forEach(element => {
+				frappe.msgprint()
+			});
+		}
+	},
+
 	before_save: function (frm) {
 		calculer_duree_jours(frm)
 	},
-
-	// before_save : function(frm) {
-	// },
 
 	refresh: function (frm) {
 		//CONFIRMER TOUS LES PARTICIPANTS marche pour une session de formation en particulier; après je peux faire foreach enfants de session
