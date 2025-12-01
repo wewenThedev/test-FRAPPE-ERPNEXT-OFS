@@ -51,7 +51,7 @@
  "is_standard": "Yes",
  "json": "{\"filters\":[],\"fields\":[[\"name\",\"Formateur\"],[\"nom_complet\",\"Formateur\"],[\"email\",\"Formateur\"]],\"order_by\":\"`tabFormateur`.`modified` desc\",\"page_length\":20,\"column_widths\":{\"name\":120,\"nom_complet\":120,\"email\":120},\"group_by\":null}",
  "letter_head": "Ent\u00eate DEV OFS",
- "modified": "2025-11-27 19:12:23.532254",
+ "modified": "2025-12-01 18:47:03.998079",
  "modified_by": "Administrator",
  "module": "Formation Management",
  "name": "Liste des formateurs actifs",
