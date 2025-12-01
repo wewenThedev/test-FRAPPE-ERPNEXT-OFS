@@ -3,6 +3,13 @@ from frappe import _
 
 def get_context(context):
     context.title = "Vue d'ensemble des formations"
+    
+    # context.update({
+    #     'intro_title': _("Vue d'ensemble des formations"),
+    #     'intro_text': _("Cette page présente toutes les sessions de formation à venir. Cliquez sur 'Afficher détails' pour plus d'informations."),
+    # })
+    
+    return context
 
 @frappe.whitelist()
 def get_statistiques_globales():

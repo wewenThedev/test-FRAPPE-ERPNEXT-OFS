@@ -5,7 +5,7 @@ frappe.pages['formation-overview'].on_page_load = function(wrapper) {
 		single_column: true
 	});
 	// Message d'introduction (set_intro)
-    // let $intro = page.set_intro('Cette page formation_overview affiche toutes les sessions de formation à venir. Cliquez sur "Afficher détails" pour plus d\'informations.'));
+    // page.set_intro('Cette page formation_overview affiche toutes les sessions de formation à venir. Cliquez sur "Afficher détails" pour plus d\'informations.'));
 
 	//let $btn = page.set_primary_action('New', () => frappe.msgprint('Ajouter nouveau cliqué'));
 	
@@ -22,9 +22,13 @@ frappe.pages['formation-overview'].on_page_load = function(wrapper) {
     //     </div>
     // `);
 
-
 	$(page.body).html(`
         <div class="formation-overview">
+			<!-- Message d'introduction -->
+    		<div class="intro-message alert alert-info">
+       			<h4>Message Important</h4>
+        		<p>Cette page présente toutes les sessions de formation à venir. Cliquez sur 'Afficher détails' pour plus d'informations.</p>
+    		</div>
             <div class="row mb-4">
                 <div class="col-md-6">
                     <h4>Sessions à venir</h4>

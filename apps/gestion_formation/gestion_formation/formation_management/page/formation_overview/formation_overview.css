@@ -2,6 +2,10 @@
     padding: 20px;
 }
 
+.intro-message {
+    margin-bottom: 30px;
+}
+
 .session-row:hover {
     background-color: #f8f9fa;
     cursor: pointer;

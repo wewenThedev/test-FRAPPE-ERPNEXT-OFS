@@ -64,17 +64,18 @@ frappe.ui.form.on('Session de Formation', {
 
 			//Partie 6
 			frappe.call({
-        		method: 'gestion_formation.formation_management.doctype.session_de_formation.session_de_formation.get_formateur_et_telephone_par_cours',
-        		args: {
-            		cours_name: frm.doc.cours
-        		},
+        		doc : frm.doc,
+				method: 'get_infos_formateur',
+        		// args: {
+            	// 	cours_name: frm.doc.cours
+        		// },
         		callback: function(r) {
             		if (r.message) {
                 		let infos = r.message;
                 
                 		if (infos.formateur) {
                     	// Afficher l'alerte avec toutes les infos
-                    		frappe.show_alert({
+                    		frappe.msgprint({
                         		message: `Formateur: ${infos.nom_complet || infos.formateur} - Téléphone: ${infos.telephone}`,
                         		indicator: 'blue',
 								duration: 5
@@ -156,10 +157,8 @@ frappe.ui.form.on('Session de Formation', {
 			// Appel serveur vers la méthode compter_participants
 			console.log("I call server")
 			frm.call({
+				doc : frm.doc,
 				method: 'compter_participants',  // Méthode côté serveur
-        		// args: {
-        	    // 	cours_name: frm.doc.cours  // Passer le nom de la session
-        		// },
         		freeze: true,                    // Bloquer l'interface pendant l'appel
         		freeze_message: __('Calcul du nombre de participants...'), // Message d'attente
         		callback: function(response) {
@@ -169,11 +168,14 @@ frappe.ui.form.on('Session de Formation', {
                 		frappe.show_alert({
                     		message: __(`Nombre total de participants: ${response.message}`),
                     		indicator: 'green',  
-                    		duration: 5
+                    		duration: 10
                 		});
             		} else {
+						console.log("Réponse complète:", response);
+                		console.log("Nombre de participants:", response.error);
+
                 		frappe.show_alert({
-                    		message: __('Erreur lors du calcul des participants'),
+                    		message: __('Erreur lors du calcul des participants '),
                     		indicator: 'red',
 							duration: 5
                 		});
@@ -194,17 +196,7 @@ frappe.ui.form.on('Session de Formation', {
 	//Partie 6
 	
 
-	participants_add: function (frm) {
-		// Quand on ajoute une nouvelle ligne
-		// email: function (frm) {
-		// 	const email = frm.doc.participant.email;
-		// 	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-		// 	if (email && !regex.test(email)) {
-		// 		frappe.msgprint(__('Veuillez entrer une adresse email valide.'));
-		// 		//frappe.validated = false;
-		// 	}
-		// },
+	participants_add: function (frm, cdt, cdn) {
 	},
 
 	participants: function (frm, cdt, cdn) {
@@ -227,17 +219,6 @@ frappe.ui.form.on('Session de Formation', {
 
 	//validate : function (frm) {}
 
-	/* 
-	frappe.ui.form.on("Session de Formation", {
-	
-});*/
-
-	// frm.add_custom_button("2 Confirmer tous les participants", () => {
-	// 		frappe.msgprint('You clicked Me!')
-	// 	}, 'click me');
-	// 	frm.add_custom_button("3 Confirmer tous les participants", () => {
-	// 		frappe.msgprint('You clicked Me!')
-	// 	}, 'click me')
 });
 
 //les fonctions restent en dehors des frappe.ui.form.on de doctypes
@@ -258,22 +239,16 @@ function calculer_duree_jours(frm) {
 frappe.ui.form.on('Participant', {
 
 	email: function (frm, cdt, cdn) {
+		//Quand on ajoute une nouvelle ligne
 		// Récupérer la ligne modifiée dans la table enfant
 		let row = locals[cdt][cdn];
-		// Vérifier si l'email est rempli mais pas le nom
-		if (row.email && !row.nom) {
-			// Mettre automatiquement le nom à "Participant inconnu"
-			frappe.model.set_value(cdt, cdn, 'nom', 'Participant inconnu');
+		const email_value = row.email;
+		const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+		if (email_value && !regex.test(email_value)) {
+			frappe.throw(__('Veuillez entrer une adresse email valide.'));
 		}
-	}
-
-});
-
-frappe.ui.form.on('Participant', {
-
-	email: function (frm, cdt, cdn) {
-		// Récupérer la ligne modifiée dans la table enfant
-		let row = locals[cdt][cdn];
+		
 		// Vérifier si l'email est rempli mais pas le nom
 		if (row.email && !row.nom) {
 			// Mettre automatiquement le nom à "Participant inconnu"
