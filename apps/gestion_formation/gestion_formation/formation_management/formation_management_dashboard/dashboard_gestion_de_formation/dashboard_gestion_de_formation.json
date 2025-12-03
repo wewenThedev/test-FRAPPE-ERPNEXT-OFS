@@ -1,5 +1,18 @@
 {
- "cards": [],
+ "cards": [
+  {
+   "card": "Nombre de sessions programm\u00e9es"
+  },
+  {
+   "card": "Sessions de formation en cours"
+  },
+  {
+   "card": "Total cours actifs"
+  },
+  {
+   "card": "Sessions \u00e0 venir (6 mois)"
+  }
+ ],
  "charts": [
   {
    "chart": "Sessions par mois",
@@ -10,7 +23,15 @@
    "width": "Half"
   },
   {
-   "chart": "Revenu par cours",
+   "chart": "Total revenus par cours Chart",
+   "width": "Half"
+  },
+  {
+   "chart": "Tendances des cours",
+   "width": "Half"
+  },
+  {
+   "chart": "Total revenus par formateur Chart",
    "width": "Half"
   }
  ],
@@ -21,7 +42,7 @@
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2025-11-28 11:23:55.323825",
+ "modified": "2025-12-03 10:44:23.341380",
  "modified_by": "Administrator",
  "module": "Formation Management",
  "name": "Dashboard Gestion de Formation",

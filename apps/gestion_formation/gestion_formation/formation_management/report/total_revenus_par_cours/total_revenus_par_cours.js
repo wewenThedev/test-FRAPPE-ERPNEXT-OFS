@@ -2,39 +2,37 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
-frappe.query_reports["Total revenus par cours"] = {
-	"filters": [
-		{
+frappe.query_reports["Total des revenus par cours"] = {
+    "filters": [
+        {
             "fieldname": "cours",
-            "label": _("Cours"),
+            "label": __("Cours"),
             "fieldtype": "Link",
             "options": "Cours",
-		},
-        // {
-        //     "fieldname": "titre",
-        //     "label": _("Titre du Cours"),
-        //     "fieldtype": "Data", 
-        // },
-		{
-            "fieldname": "nombre_sessions",
-            "label": _("Nb Sessions"),
-            "fieldtype": "Int", 
-            "width": 100
+            "width": 200,
         },
         {
-            "fieldname": "total_participants",
-            "label": _("Participants(toutes sessions)"),
-            "fieldtype": "Int",
+            "fieldname": "statut",
+            "label": __("Statut du Cours"),
+            "fieldtype": "Check",
+            // "fieldtype": "Select",
+            // "options": "\nActif\nInactif\nArchivé",
+            // "default": "Actif",
+            "width": 150
         },
-        // {
-        //     "fieldname": "prix",
-        //     "label": _("Prix"),
-        //     "fieldtype": "Currency",
-        // },
-        // {
-        //     "fieldname": "revenu_total",
-        //     "label": _("Revenu Total"),
-        //     "fieldtype": "Currency",
-        // }
+        {
+            "fieldname": "date_debut",
+            "label": __("Date de début"),
+            "fieldtype": "Date",
+            "width": 100,
+            "hidden": 0  // Caché par défaut
+        },
+        {
+            "fieldname": "date_fin",
+            "label": __("Date de fin"),
+            "fieldtype": "Date",
+            "width": 100,
+            "hidden": 0
+        }
 	]
 };

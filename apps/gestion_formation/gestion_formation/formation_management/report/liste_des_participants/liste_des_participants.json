@@ -1,0 +1,23 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2025-12-02 10:40:38.651219",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Ent\u00eate DEV OFS",
+ "modified": "2025-12-02 10:47:20.197589",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Liste des Participants",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Participant",
+ "report_name": "Liste des Participants",
+ "report_type": "Script Report",
+ "roles": []
+}

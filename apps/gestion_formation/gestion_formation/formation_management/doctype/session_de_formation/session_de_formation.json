@@ -9,6 +9,7 @@
  "field_order": [
   "cours",
   "lieu",
+  "revenue",
   "column_break_8ojvs",
   "date_debut",
   "date_fin",
@@ -58,11 +59,18 @@
   {
    "fieldname": "section_break_ipx1s",
    "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "cours",
+   "fieldname": "revenue",
+   "fieldtype": "Int",
+   "label": "Revenu total session",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-27 19:34:43.083931",
+ "modified": "2025-12-03 09:08:21.408752",
  "modified_by": "Administrator",
  "module": "Formation Management",
  "name": "Session de Formation",

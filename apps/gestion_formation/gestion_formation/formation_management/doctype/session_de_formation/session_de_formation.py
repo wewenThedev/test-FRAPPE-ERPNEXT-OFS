@@ -9,11 +9,39 @@ from frappe.utils import datetime, today, add_days, add_months, add_years
 
 class SessiondeFormation(Document):
 
+	@frappe.whitelist()
 	def before_save(self) :
 		if (self.date_debut and self.date_fin) :
 			if not (self.date_debut <= self.date_fin) :
-				frappe.throw(_("Date de fin choisie : {0}.\nLa date de fin doit être en avance sur (ultérieure à) la date de début.", [self.date_fin]))
+				frappe.throw(_("Date de fin choisie : {0}.\nLa date de fin doit être en avance sur (ultérieure à) la date de début.").format(self.date_fin))
+		
+		self.calculer_revenue()
+		print(self.revenue)
 
+	@frappe.whitelist()
+	def calculer_revenue(self):
+		try :
+			prix_cours = 0
+			if self.cours:
+				prix_cours = frappe.db.get_value('Cours', self.cours, 'prix') or 0
+				print(f"Prix du cours {self.cours} : {prix_cours}")
+				if not prix_cours:
+					frappe.msgprint(f"Attention: Le cours '{self.cours}' n'a pas de prix défini", indicator="orange")
+				
+				nombre_participants = self.compter_participants()
+				print(f"Nombre de participants pour la session {self.name} : {nombre_participants}")
+				if prix_cours and nombre_participants:
+					self.revenue = float(prix_cours) * nombre_participants
+					print("Revenu mis à jour")
+					print(f"Revenu mis à jour : {self.revenue}")
+				else:
+					self.revenue = 0
+				frappe.logger().debug(f"Session {self.name}: revenue = {prix_cours} * {nombre_participants} = {self.revenue}")
+		except Exception as e:
+				frappe.log_error(f"Erreur calcul revenue: {str(e)}", "SessionDeFormation")
+				self.revenue = 0
+    
+	
 	# @frappe.whitelist()
 	# def test_un(self):
 	# 	return len(self.participants)
@@ -27,26 +55,16 @@ class SessiondeFormation(Document):
 	@frappe.whitelist()
 	def compter_participants(self) :
 		count = int(0)
-		# if(hasattr(self, 'participants') and not(self.participants)) :
-		# 	count = len(self.participants)
-		# else :
-		# 	print("Aucun participant trouvé")
-		# return count
 		try :
 			if(hasattr(self, 'participants') and self.participants and len(self.participants) > 0) :
 				return len(self.participants)
 			else :
 				return count
-				# return "zéro"
-				# return frappe.db.count('Participant', filters={'parent_name': self.name})
-				
 		except Exception as e:
 			frappe.log_error(f"Erreur compter_participants: {e}")
 			return f"Erreur: {e}"
 	
 	def validate(self) :
-        #frappe.msgprint("Validation réussie avec succès")
-        # Vérifier si le doctype personnalisé existe
 		if frappe.db.exists("DocType", "Document Log") :
             # Log personnalisé
             # if frappe.get_doc('Document Log', self.name):  # Si ce n'est pas un nouveau document # if not self.is_new():
@@ -119,6 +137,8 @@ class SessiondeFormation(Document):
 			return {"formateur": "", "telephone": "Erreur de récupération"}
 
 
+     
+        
     #     #frappe.new_doc()
     #     frappe.msgprint(_("{0}. The family member name is {1} and relation is {2}").format(row.idx, row.first_name, row.relation))
     # frappe.msgprint(_("Validation {0} réussie avec succès").format([]))

@@ -92,13 +92,11 @@ frappe.ui.form.on('Session de Formation', {
 
 	lieu : function(frm){
 		if(frm.doc.lieu){
-			//let listeSessions = frappe.get_list('Session de Formation', filters={'date_debut' : ['>=', frappe.utils.nowdate()]})
-			let listeSessions = frappe.get_list('Session de Formation',fields=['name', 'cours', 'date_debut', 'date_fin'], debug=True)
-			
-
-			listeSessions.array.forEach(element => {
-				frappe.msgprint()
-			});
+			//let listeSessions = frappe.db.get_list('Session de Formation', filters={'date_debut' : ['>=', frappe.utils.nowdate()]})
+			let listeSessions = frappe.db.get_list('Session de Formation')
+			// listeSessions.array.forEach(element => {
+			// 	frappe.msgprint("Session: {0} - Lieu : {1}").format(element.name, element.lieu)
+			// });
 		}
 	},
 

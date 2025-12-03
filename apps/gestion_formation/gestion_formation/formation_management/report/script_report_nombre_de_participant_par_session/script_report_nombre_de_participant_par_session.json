@@ -1,0 +1,74 @@
+{
+ "add_total_row": 1,
+ "columns": [
+  {
+   "fieldname": "name",
+   "fieldtype": "Link",
+   "label": "Nom de session",
+   "width": 0
+  },
+  {
+   "fieldname": "cours",
+   "fieldtype": "Link",
+   "label": "Cours concern\u00e9",
+   "width": 0
+  },
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "label": "Date de d\u00e9but",
+   "width": 0
+  },
+  {
+   "fieldname": "date_fin",
+   "fieldtype": "Date",
+   "label": "Date de fin",
+   "width": 0
+  },
+  {
+   "fieldname": "nombre_participants",
+   "fieldtype": "Int",
+   "label": "Total participants",
+   "width": 0
+  }
+ ],
+ "creation": "2025-11-28 09:28:17.224441",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "name",
+   "fieldtype": "Link",
+   "label": "Nom de Session",
+   "mandatory": 0,
+   "wildcard_filter": 0
+  },
+  {
+   "fieldname": "cours",
+   "fieldtype": "Link",
+   "label": "Cours concern\u00e9",
+   "mandatory": 0,
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "Ent\u00eate DEV OFS",
+ "modified": "2025-12-02 12:34:53.836681",
+ "modified_by": "Administrator",
+ "module": "Formation Management",
+ "name": "Script report Nombre de participant par session",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Session de Formation",
+ "report_name": "Script report Nombre de participant par session",
+ "report_script": "def execute(filters=None):\r\n    columns = [\r\n        {\"fieldname\": \"name\", \"label\": \"Session\", \"fieldtype\": \"Link\", \"options\": \"Session de Formation\", \"width\": 120},\r\n        {\"fieldname\": \"cours\", \"label\": \"Cours\", \"fieldtype\": \"Link\", \"options\": \"Cours\", \"width\": 100},\r\n        {\"fieldname\": \"date_debut\", \"label\": \"Date D\u00e9but\", \"fieldtype\": \"Date\", \"width\": 100},\r\n        {\"fieldname\": \"date_fin\", \"label\": \"Date Fin\", \"fieldtype\": \"Date\", \"width\": 100},\r\n        {\"fieldname\": \"lieu\", \"label\": \"Lieu\", \"fieldtype\": \"Data\", \"width\": 150},\r\n        {\"fieldname\": \"participants_count\", \"label\": \"Total Participants\", \"fieldtype\": \"Int\", \"width\": 80},\r\n    ]\r\n    \r\n    data = frappe.db.sql(\"\"\"\r\n        SELECT \r\n            s.name,\r\n            s.cours,\r\n            s.date_debut,\r\n            s.date_fin,\r\n            s.lieu,\r\n            (SELECT COUNT(*) FROM `tabParticipant` p WHERE p.parent = s.name) as participants_count\r\n        FROM `tabSession de Formation` s\r\n        ORDER BY participants_counts DESC;\r\n    \"\"\", as_dict=1)\r\n    \r\n    return columns, data",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}
